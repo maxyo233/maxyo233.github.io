@@ -67,13 +67,20 @@
     <button onclick="showInputForm()">我想我想！</button>  
 </div>  
   
-<div id="input-form" class="popup">  
-    <p>请输入预约时间！</p>  
-    <input type="text" id="appointment-time" placeholder="预约时间">  
-    <button onclick="submitAppointment()">提交</button>  
+<div id="input-form" class="popup">    
+    <p>请输入预约时间！</p>    
+    <input type="date" id="appointment-time" placeholder="预约时间">    
+    <button onclick="submitAppointment()">提交</button>    
 </div>  
   
 <script>  
+var today = new Date();  
+    // 格式化日期为YYYY-MM-DD格式  
+    var dateString = today.getFullYear() + '-' +   
+                     ('0' + (today.getMonth() + 1)).slice(-2) + '-' +   
+                     ('0' + today.getDate()).slice(-2);  
+    // 设置日期选择器的默认值为当前日期  
+    document.getElementById("appointment-time").value = dateString;
 function showDialog() {  
     document.getElementById("dialog").style.display = "block";  
 }  
@@ -83,17 +90,28 @@ function showInputForm() {
     document.getElementById("input-form").style.display = "block";  
 }  
   
-function submitAppointment() {  
-    var appointmentTime = document.getElementById("appointment-time").value;  
-    if (appointmentTime) {  
-        alert("预约成功！");  
+function submitAppointment() {    
+    var appointmentTime = document.getElementById("appointment-time").value;    
+    var minDate = new Date("2024-10-18");  
+    var maxDate = new Date("2024-10-20");  
+    var selectedDate = new Date(appointmentTime);  
+  
+    if (isNaN(selectedDate.getTime())) {  
+        alert("请选择有效的日期！");  
+        return;  
+    }  
+    if (selectedDate < minDate) {  
+        alert("不行哦我还没准备好呢！");  
+    } else if (selectedDate > maxDate) {  
+        alert("喂喂喂是不是太晚了点！");  
+    } else {  
+        alert("预约成功！选择了正确时间的才是好宝宝！");  
         // 重置页面  
         document.getElementById("input-form").style.display = "none";  
-        location.reload();  
-    } else {  
-        alert("请输入预约时间！");  
+        // 如果不需要重新加载整个页面，可以注释掉下面这行  
+        // location.reload();  
     }  
-}  
+}   
 </script>  
 </body>  
 </html>
