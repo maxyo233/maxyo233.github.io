@@ -1,21 +1,99 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>你好呀！</title>
-<script>
-function displayDate(){
-	document.getElementById("demo").innerHTML=Date();
-}
-</script>
-</head>
-<body>
-
-<h1>想来我的家里参观一下吗？</h1>
-<p id="demo">请带好有效身份证明和一份小礼物！</p>
-
-<button type="button" onclick="displayDate()">显示日期</button>
-
-</body>
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="utf-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>你好呀！</title>  
+<style>  
+    body, html {  
+        height: 100%;  
+        margin: 0;  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        background-color: #f0f8ff;  
+    }  
+    #door {  
+        width: 500px;  
+        height: 700px;  
+        background-image: url('door.png');  
+        background-size: cover;  
+        background-position: center;  
+        cursor: pointer;  
+        position: relative;  
+    }  
+    .popup {  
+        display: none;  
+        position: absolute;  
+        top: 50%;  
+        left: 50%;  
+        transform: translate(-50%, -50%);  
+        background-color: #fffef9; /* 浅黄色背景 */  
+        padding: 20px;  
+        border-radius: 10px; /* 圆角 */  
+        border: 2px solid #d4af37; /* 深黄色边框 */  
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */  
+        z-index: 10;  
+        text-align: center;  
+        width: 300px; /* 设定宽度 */  
+    }  
+    #input-form input[type="text"] {  
+        width: calc(100% - 22px); /* 使输入框宽度适应弹窗宽度 */  
+        padding: 10px;  
+        margin-bottom: 10px;  
+        border: 1px solid #ccc;  
+        border-radius: 5px; /* 圆角 */  
+    }  
+    .popup button {  
+        background-color: #ffeb3b; /* 黄色按钮背景 */  
+        color: #333; /* 按钮文字颜色 */  
+        border: none;  
+        padding: 10px 20px;  
+        border-radius: 5px; /* 圆角 */  
+        cursor: pointer;  
+        font-size: 16px;  
+    }  
+    .popup button:hover {  
+        background-color: #fdd835; /* 鼠标悬停时按钮颜色变化 */  
+    }  
+</style>  
+</head>  
+<body>  
+<div id="door" onclick="showDialog()"></div>  
+  
+<div id="dialog" class="popup">  
+    <p>想要来我家参观一下吗？</p>  
+    <p>请携带有效身份证件和一份小礼物！</p>  
+    <button onclick="showInputForm()">我想我想！</button>  
+</div>  
+  
+<div id="input-form" class="popup">  
+    <p>请输入预约时间！</p>  
+    <input type="text" id="appointment-time" placeholder="预约时间">  
+    <button onclick="submitAppointment()">提交</button>  
+</div>  
+  
+<script>  
+function showDialog() {  
+    document.getElementById("dialog").style.display = "block";  
+}  
+  
+function showInputForm() {  
+    document.getElementById("dialog").style.display = "none";  
+    document.getElementById("input-form").style.display = "block";  
+}  
+  
+function submitAppointment() {  
+    var appointmentTime = document.getElementById("appointment-time").value;  
+    if (appointmentTime) {  
+        alert("预约成功！");  
+        // 重置页面  
+        document.getElementById("input-form").style.display = "none";  
+        location.reload();  
+    } else {  
+        alert("请输入预约时间！");  
+    }  
+}  
+</script>  
+</body>  
 </html>
