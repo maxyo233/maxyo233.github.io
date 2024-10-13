@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你好呀！</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你好呀！</title>
+<script>
+function displayDate(){
+	document.getElementById("demo").innerHTML=Date();
+}
+</script>
 </head>
 <body>
-    <h1>想要来我家参观一下吗</h1>
-    <p>请携带有效身份证明以及你的小礼物前来！</p>
+
+<h1>想来我的家里参观一下吗？</h1>
+<p id="demo">请带好有效身份证明和一份小礼物！</p>
+
+<button type="button" onclick="displayDate()">显示日期</button>
+
 </body>
 </html>
